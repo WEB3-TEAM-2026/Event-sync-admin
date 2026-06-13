@@ -113,6 +113,7 @@ export const Layout = ({ children }: { children: ReactNode }) => (
       "& .RaLayout-content": {
         bgcolor: "#f8fafc",
         minHeight: "100vh",
+        paddingTop: "60px",
       },
     }}
   >
