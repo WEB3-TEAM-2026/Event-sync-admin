@@ -18,6 +18,7 @@ const RESOURCE_ICONS: Record<string, React.ElementType> = {
 };
 
 const RESOURCE_LABELS: Record<string, string> = {
+  dashboard: "Dashboard",
   events: "Événements",
   sessions: "Sessions",
   speakers: "Intervenants",
@@ -96,10 +97,10 @@ export const Layout = ({ children }: { children: ReactNode }) => (
   <RALayout
     menu={CustomMenu}
     sx={{
-      "& .RaLayout-appFrame": { marginTop: 0 },
+      "& .RaLayout-appFrame": { marginTop: 6 },
       "& .RaSidebar-root": {
         "& .MuiDrawer-paper": {
-          background: "#ffffff",
+          background: "#0000",
           borderRight: "1px solid #e2e8f0",
         },
       },
@@ -113,7 +114,7 @@ export const Layout = ({ children }: { children: ReactNode }) => (
       "& .RaLayout-content": {
         bgcolor: "#f8fafc",
         minHeight: "100vh",
-        paddingTop: "60px",
+        paddingTop: "20px",
       },
     }}
   >

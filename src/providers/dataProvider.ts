@@ -95,6 +95,7 @@ export const dataProvider: DataProvider = {
       }
 
       records = records.sort((a, b) => (b.upvotes ?? 0) - (a.upvotes ?? 0));
+      // FIX: use filtered count as total, not unfiltered
       const total = records.length;
       const { page = 1, perPage = 20 } = params.pagination || {};
       const start = (page - 1) * perPage;
@@ -104,7 +105,7 @@ export const dataProvider: DataProvider = {
     const endpoint = ENDPOINTS[resource];
     if (!endpoint) throw new Error(`Unknown resource: ${resource}`);
 
-    const { data, headers } = await apiFetch(`${API_BASE}${endpoint}`);
+    const { data } = await apiFetch(`${API_BASE}${endpoint}`);
 
     let records: RaRecord[] = (data.data || []).map((r: RaRecord) =>
       flattenRecord(resource, r)
@@ -122,6 +123,7 @@ export const dataProvider: DataProvider = {
       });
     }
 
+    // Apply sorting client-side
     if (params.sort?.field) {
       const { field, order } = params.sort;
       records = [...records].sort((a, b) => {
@@ -132,10 +134,7 @@ export const dataProvider: DataProvider = {
       });
     }
 
-    const total = parseInt(
-      headers.get("X-Total-Count") || String(records.length),
-      10
-    );
+    const total = records.length;
     const { page = 1, perPage = 10 } = params.pagination || {};
     const start = (page - 1) * perPage;
     return { data: records.slice(start, start + perPage), total };

@@ -1,8 +1,6 @@
 import {
   List,
   Datagrid,
-  TextField,
-  NumberField,
   DateField,
   Show,
   SimpleShowLayout,
@@ -14,38 +12,12 @@ import {
   FunctionField,
   WrapperField,
   BulkDeleteButton,
-  Labeled,
 } from "react-admin";
 import { Chip, Box, Typography, Avatar, LinearProgress } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import PersonIcon from "@mui/icons-material/Person";
 import { RaRecord } from "react-admin";
 
-//Upvote Bar
-const UpvoteBar = ({ upvotes, max }: { upvotes: number; max: number }) => {
-  const pct = max > 0 ? Math.round((upvotes / max) * 100) : 0;
-  return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 1, minWidth: 120 }}>
-      <LinearProgress
-        variant="determinate"
-        value={pct}
-        sx={{
-          flex: 1,
-          height: 6,
-          borderRadius: 3,
-          bgcolor: "#e2e8f0",
-          "& .MuiLinearProgress-bar": { bgcolor: "#5b6cf9", borderRadius: 3 },
-        }}
-      />
-      <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, minWidth: 36 }}>
-        <ThumbUpIcon sx={{ fontSize: 12, color: "#5b6cf9" }} />
-        <Typography variant="caption" fontWeight={700} color="#5b6cf9">
-          {upvotes}
-        </Typography>
-      </Box>
-    </Box>
-  );
-};
 
 // Author Cell
 const AuthorCell = () => {
